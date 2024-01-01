@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
-from utils import calculate_angle
+from .utils import calculate_angle
 
 
 class ModelPose:
@@ -13,7 +13,7 @@ class ModelPose:
         self.mp_drawing = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
 
-    def run(self,min_detection_confidence=0.5,min_tracking_confidence=0.5):
+    def run(self,min_detection_confidence,min_tracking_confidence):
         with self.mp_pose.Pose(min_detection_confidence=min_detection_confidence,min_tracking_confidence=min_tracking_confidence) as pose:
             while self.cap.isOpened():
                 ret,frame = self.cap.read()
